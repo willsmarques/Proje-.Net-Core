@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MVCProjeto.Data;
 namespace MVCProjeto
 {
     public class Program
@@ -5,6 +8,8 @@ namespace MVCProjeto
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<MVCProjetoContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MVCProjetoContext") ?? throw new InvalidOperationException("Connection string 'MVCProjetoContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
