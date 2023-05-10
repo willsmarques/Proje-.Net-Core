@@ -53,7 +53,7 @@ namespace SalesWebMvc.Controllers
                 return View(viewModel);
             }
 
-           await  _sellerService.InsertAsync(seller);
+            await _sellerService.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
 
@@ -133,11 +133,11 @@ namespace SalesWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Seller seller)
         {
-           
+
             if (!ModelState.IsValid)
             {
                 var departament = await _departamentService.FindAllSync();
-                var viewModel = new SellerFormViewModel { Seller = seller,Departaments = departament };
+                var viewModel = new SellerFormViewModel { Seller = seller, Departaments = departament };
                 return View(viewModel);
             }
 
